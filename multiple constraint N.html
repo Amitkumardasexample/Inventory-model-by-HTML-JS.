@@ -1,0 +1,118 @@
+<html>
+   <body>
+   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+<title>OPERATION_RESARCH_II</title>
+</head>
+<body background="background.jpg";>
+<center>
+<h1 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;MULTIPLE N CONSTRAINT MODEL</h1>
+<h2 style="color:white;">___________________________________________________________________________________________________</h2>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANNUAL DEMAND FOR ITEM 1:<input type="text" id="D1"=><em>unit/year</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANNUAL DEMAND FOR ITEM 2:<input type="text" id="D2"><em>unit/year</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDERING COST FOR ITEM 1:<input type="number" id="Co1"><em>rupees/unit</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDERING COST FOR ITEM 2:<input type="number" id="Co2"><em>rupees/unit</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTEREST RATE FOR ITEM 1:<input type="text" id="i1"><em></em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTEREST RATE FOR ITEM 2:<input type="text" id="i2"><em></em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIT PRICE FOR ITEM 1:<input type="text" id="P1"><em>rupees</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIT PRICE FOR ITEM 2:<input type="text" id="P2"><em>rupees</em></input><br><br></p>
+<p style="color:white;">NUMBER OF ORDER CONSTRAINT:<input type="text" id="N"></input><br><br></p></center>
+<center><button onclick="test()"><p style="color:blue;"><h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GET RESULT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h1></p></button><br><br></center>
+
+<script type="text/javascript">
+function test()
+{	var D1 = document.getElementById("D1").value;
+	var D2 = document.getElementById("D2").value;
+	var Co1 = document.getElementById("Co1").value;
+	var Co2 = document.getElementById("Co2").value;
+	var i1 = document.getElementById("i1").value;
+	var i2 = document.getElementById("i2").value;
+	var P1 = document.getElementById("P1").value;
+	var P2 = document.getElementById("P2").value;
+	var N = document.getElementById("N").value;
+	var eoq1=((2*D1*Co1)/(i1*P1));
+	var Q1=Math.sqrt(eoq1);
+	var eoq2=((2*D2*Co2)/(i2*P2));
+	var Q2=Math.sqrt(eoq2);
+	var N1=(D1/Q1);
+	var N2=(D2/Q2);
+	var NS=(N1+N2);
+	document.write("initial number of orders:");
+	document.write(NS);
+    document.write("<br/>");
+	if( NS > N )
+	{			var a=Math.sqrt(D1*P1)+Math.sqrt(D2*P2);
+				var lmd=(((i1*a*a)/(2*N*N))-Co1);
+                var e=(2*D1*(Number.parseInt(Co1)+(lmd)));
+                var f=(2*D2*(Number.parseInt(Co2)+(lmd)));
+                var w=(Number.parseInt(e)/(Number.parseFloat(i1)*(Number.parseInt(P1))));
+                var q=(Number.parseInt(f)/(Number.parseFloat(i2)*(Number.parseInt(P2))));
+                var QR1=Math.sqrt(Number.parseFloat(w));
+				var QR2=Math.sqrt(Number.parseFloat(q));
+                document.write("Including lambda order quantity for item 1:");
+                document.write(QR1);
+                document.write("<br/>");
+                document.write("Including lambda order quantity for item 2:");
+                document.write(QR2);
+                document.write("<br/>");
+				var NR1=(D1/QR1);
+                var NR2=(D2/QR2);
+                document.write("N1:");
+                document.write(NR1);
+                document.write("<br/>");
+                document.write("N2:");
+                document.write(NR2);
+                document.write("<br/>");
+				var TNR=(NR1+NR2);
+                document.write("total number of orders:");
+                document.write(TNR);
+                document.write("<br/>");
+                document.write("<br/>");
+				if( TNR < N)
+					{	document.write("lambda value:");
+						document.write(lmd);
+                        document.write("<br/>");
+                        document.write("number of orders at last:<br/>");
+						document.write(TNR);
+                        document.write("<br/>");
+			
+					 }
+				else  
+                {
+                	var l = 0.1;
+  	        	    while (l < 1)
+					{
+            				var QR3=Math.sqrt((2*(Co1+l)*D1)/(i1*P1));
+							var QR4=Math.sqrt((2*(Co2+l)*D2)/(i2*P2));
+							var NR3=(D1/QR3);
+							var NR3=(D2/QR4);
+							var TNR2=(NR3+NR4);
+							document.write(" for lambda value : " + l + "<br />");
+							document.write("total space obtained:")
+							document.write(TNR2);
+                            document.write("<br/>");
+                            if (TNR<N)
+                            {
+                            break;
+                            }
+                            else{
+							l=l+0.1;}
+					}
+                            
+                }             
+    }
+else{
+ document.write("the space is already enough");
+    }
+}
+      </script>
+      
+      
+   </body>
+<center><div style="color:white;"id="footer">
+        MADE BY <a href="#">AMIT KUMAR DAS</a><br />
+		REGISTER NO:<a href="#">2014108002</a><br />		
+	</div></center>
+
+</html>

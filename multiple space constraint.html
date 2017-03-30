@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+<title>OPERATION_RESARCH_II</title>
+</head>
+<body background="background.jpg";>
+<center>
+<h1 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MULTIPLE SPACE CONSTRAINT MODEL</h1>
+<h2 style="color:white;">___________________________________________________________________________________________________</h2>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANNUAL DEMAND FOR ITEM 1<input type="text" id="D1"=><em>unit/year</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANNUAL DEMAND FOR ITEM 2<input type="text" id="D2"><em>unit/year</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDERING COST FOR ITEM 1<input type="text" id="Co1"><em>rupees/unit</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDERING COST FOR ITEM 2<input type="text" id="Co2"><em>rupees/unit</em></input><br><br></p>
+<p style="color:white;">INTEREST RATE FOR ITEM 1<input type="text" id="i1"><em></em></input><br><br></p>
+<p style="color:white;">INTEREST RATE FOR ITEM 2<input type="text" id="i2"><em></em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIT PRICE FOR ITEM 1<input type="text" id="P1"><em>rupees</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIT PRICE FOR ITEM 2<input type="text" id="P2"><em>rupees</em></input><br><br></p>
+<p style="color:white;">STORAGE SPACE FOR ITEM 1<input type="text" id="S1"><em></em></input><br><br></p>
+<p style="color:white;">STORAGE SPACE FOR ITEM 2<input type="text" id="S2"><em></em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STORAGE CONSTRAINT      <input type="text" id="SC"><em></em></input><br><br></p></center>
+<center><button onclick="test()"><p style="color:blue;"><h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GET RESULT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h1></p></button><br><br></center>
+
+<script type="text/javascript">
+function test()
+{	var D1 = document.getElementById("D1").value;
+	var D2 = document.getElementById("D2").value;
+	var Co1 = document.getElementById("Co1").value;
+	var Co2 = document.getElementById("Co2").value;
+	var i1 = document.getElementById("i1").value;
+	var i2 = document.getElementById("i2").value;
+	var P1 = document.getElementById("P1").value;
+	var P2 = document.getElementById("P2").value;
+	var S1 = document.getElementById("S1").value;
+    var S2 = document.getElementById("S2").value;
+	var SC = document.getElementById("SC").value;
+	var eoq1=((2*D1*Co1)/(i1*P1));
+	var Q1=Math.sqrt(eoq1);
+	var eoq2=((2*D2*Co2)/(i2*P2));
+	var Q2=Math.sqrt(eoq2);
+	var TC1=((D1/Q1)*Co1)+((Q1/2)*i1*P1)+(D1*i1);
+	var TC2=((D2/Q2)*Co2)+((Q2/2)*i2*P2)+(D2*i2);
+	var Sav1=((Q1*S1)/2);
+	var Sav2=((Q2*S2)/2);
+	var TS=(Sav1+Sav2);
+	
+	if( TS > SC )
+	{			var l=((D1*Co1*S1)/(2*TS*TS))-((i1*P1)/S1);
+				var QR1=Math.sqrt((2*Co1*D1)/((P1*i1)+(l*S1)));
+				var QR2=Math.sqrt((2*Co2*D2)/((P2*i2)+(l*S2)));
+				var SR1=((QR1*S1)/2);
+				var SR2=((QR2*S2)/2);
+				var TSR=(SR1+SR2);
+				if( TSR < SC)
+					{	
+                    	document.write("as the solved lambda value is accurate for such space value.we are NOT proceding for hit and trial method..............<br/>");
+						document.write("the lambda value is:");
+                        document.write(l);
+                        document.write("<br/>");
+						document.write(TSR);
+			
+					 }
+				else  
+                {
+                 document.write("as the solved lambda value is not accurate for such space value.we are proceding for hit and trial method.............<br/>");
+            	 var l = 0.1;
+  	        	 while (l < 10)
+					{
+            				var QR1=Math.sqrt((2*Co1*D1)/((P1*i1)+(l*S1)));
+							var QR2=Math.sqrt((2*Co2*D2)/((P2*i2)+(l*S2)));
+							var SR1=((QR1*S1)/2);
+							var SR2=((QR2*S2)/2);
+							var TSR=(SR1+SR2);
+							document.write(" for lambda value : " + l + "<br />");
+                            
+							document.write("total space obtained:")
+							document.write(TSR);
+                            document.write("<br/>");
+                            document.write("<br/>");
+                            if (TSR<SC)
+                            {
+                            break;
+                            }
+                            else{
+							l=l+0.1;}
+					}
+                            
+                }             
+    }
+else{
+ document.write("the space is already enough");
+    }
+}
+      </script>
+      
+     
+   </body>
+<center><div style="color:white;"id="footer">
+        MADE BY <a href="#">AMIT KUMAR DAS</a><br />
+		REGISTER NO:<a href="#">2014108002</a><br />		
+	</div></center>
+
+</html>

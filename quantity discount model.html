@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+<title>OPERATION_RESARCH_II</title>
+</head>
+<body background="background.jpg";>
+<center>
+<h1 style="color:white;">SYSTEM INVENTORY PERIODIC REVIEW MODEL </h1>
+<h2 style="color:white;">___________________________________________________________________________________________________</h2>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INITIAL RANGE 1:<input type="text" id="IR1"=>FINAL RANGE 1:<input type="text" id="FR1"></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INITIAL RANGE 2:<input type="text" id="IR2"=>FINAL RANGE 2:<input type="text" id="FR2"></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INITIAL RANGE 3:<input type="text" id="IR3"=>FINAL RANGE 3:<input type="text" id="FR3"></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTEREST RATE 1:<input type="text" id="i1"><em></em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTEREST RATE 2:<input type="text" id="i2"><em></em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTEREST RATE 3:<input type="text" id="i3"><em></em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIT PRICE 1:<input type="text" id="P1"><em>RUPEES</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIT PRICE 2:<input type="text" id="P2"><em>RUPEES</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIT PRICE 3:<input type="text" id="P3"><em>RUPEES</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANNUAL DEMAND :<input type="text" id="D"><em>UNIT/YEAR</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDERING COST :<input type="text" id="Co"><em>RUPEES/UNIT/YEAR</em></input><br><br></p>
+
+</center>
+<center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="test()"><p style="color:blue;"><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GET RESULT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h1></p></button><br><br></center>
+
+    <script>
+        function test()
+        {		var IR1 = document.getElementById("IR1").value;
+			var IR2 = document.getElementById("IR2").value;
+			var IR3 = document.getElementById("IR3").value;
+			var P1 = document.getElementById("P1").value;
+			var P2 = document.getElementById("P2").value;
+			var P3 = document.getElementById("P3").value;
+			var i1 = document.getElementById("i1").value;
+			var i2 = document.getElementById("i2").value;
+			var i3 = document.getElementById("i3").value;
+			var FR1 = document.getElementById("FR1").value;
+			var FR2 = document.getElementById("FR2").value;
+			var FR3 = document.getElementById("FR3").value;
+			var D=document.getElementById("D").value;
+			var Co=document.getElementById("Co").value;
+			var eoq1=((2*D*Co)/(i1*P1));
+			var Q1=Math.sqrt(eoq1);
+			var eoq2=((2*D*Co)/(i2*P2));
+			var Q2=Math.sqrt(eoq2);
+			var eoq3=((2*D*Co)/(i3*P3));
+			var Q3=Math.sqrt(eoq3);
+			document.write("the value of Q1:<br/>");		
+			document.write(Q1);
+			document.write("the value of Q2:<br/>");
+			document.write(Q2);
+			document.write("the value of Q3:<br/>");
+			document.write(Q3);
+			if(Q3<Q2&&Q3<Q1)
+			{	
+				document.write("the lowest eoq is:<br/>");
+				document.write(Q3);
+				if(Q3 > IR1 && Q3 < FR1)
+				{
+					var TCQ3=(D/Q3)*Co+((Q3/2)*(i3*P3))+(D*P3);
+					var TCIR3=(D/IR3)*Co+((IR3/2)*(i3*P3))+(D*P3);
+					var TCIR2=(D/IR2)*Co+((IR2/2)*(i2*P2))+(D*P2);
+					if (TCQ3 < TCFR1 && TCQ3 < TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCQ3);
+						document.write("and the value lies at:");
+						document.write(Q3);
+						}
+					else if(TCIR3 < TCQ3 && TCIR3 < TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR3);
+						document.write("and the value lies at:");
+						document.write(IR3);
+						
+						}
+					else
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR2);
+						document.write("and the value lies at:");
+						document.write(IR2);
+						}
+				}
+				else if(Q3> IR2 && Q3 < FR2)
+				{
+					var TCQ3=(D/Q3)*Co+((Q3/2)*(i3*P3))+(D*P3);
+					var TCFR1=(D/FR1)*Co+((FR1/2)*(i1*P1))+(D*P1);
+					var TCIR3=(D/IR3)*Co+((IR3/2)*(i3*P3))+(D*P3);
+					if (TCQ3 < TCFR1 && TCQ3 < TCIR3)
+						{
+						document.write("the least total cost is:");
+						document.write(TCQ3);
+						document.write("and the value lies at:");
+						document.write(Q3);
+						}
+					else if(TCFR1 < TCQ3 && TCFR1 < TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCFR1);
+						document.write("and the value lies at:");
+						document.write(FR1);
+						
+						}
+					else
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR3);
+						document.write("and the value lies at:");
+						document.write(IR3);
+						}
+				}
+				else if(Q3 > IR3 && Q3 < FR3)
+				{
+					var TCQ3=(D/Q3)*Co+((Q3/2)*(i3*P3))+(D*P3);
+					var TCFR1=(D/FR1)*Co+((FR1/2)*(i1*P1))+(D*P1);
+					var TCIR2=(D/IR2)*Co+((IR2/2)*(i2*P2))+(D*P2);
+					if (TCQ3 < TCFR1 && TCQ3 < TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCQ3);
+						document.write("and the value lies at:");
+						document.write(Q3);
+						}
+					else if(TCFR1 < TCQ3 && TCFR1 < TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCFR1);
+						document.write("and the value lies at:");
+						document.write(FR1);
+						
+						}
+					else
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR2);
+						document.write("and the value lies at:");
+						document.write(IR2);
+						}
+				}
+			else
+				{
+				document.write("doesnot lie in any range");
+				}
+      			}
+		else if(Q2 < Q3 && Q2 < Q1)
+			{	
+				document.write("the lowest eoq is:<br/>");
+				document.write(Q2);
+				if(Q2 > IR1 && Q2 < FR1)
+				{
+					var TCQ2=(D/Q2)*Co+((Q2/2)*(i2*P2))+(D*P2);
+					var TCIR3=(D/IR3)*Co+((IR3/2)*(i3*P3))+(D*P3);
+					var TCIR2=(D/IR2)*Co+((IR2/2)*(i2*P2))+(D*P2);
+					if (TCQ2 < TCIR3 && TCQ2 < TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCQ2);
+						document.write("and the value lies at:");
+						document.write(Q2);
+						}
+					else if(TCIR3 < TCQ2 && TCIR3 < TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR3);
+						document.write("and the value lies at:");
+						document.write(IR3);
+						
+						}
+					else
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR2);
+						document.write("and the value lies at:");
+						document.write(IR2);
+						}
+				}
+				else if(Q2>IR2&&Q2<FR2)
+				{
+					var TCQ2=(D/Q2)*Co+((Q2/2)*(i2*P2))+(D*P2);
+					var TCFR1=(D/FR1)*Co+((FR1/2)*(i1*P1))+(D*P1);
+					var TCIR3=(D/IR3)*Co+((IR3/2)*(i3*P3))+(D*P3);
+					if (TCQ2<TCFR1&&TCQ2<TCIR3)
+						{
+						document.write("the least total cost is:");
+						document.write(TCQ2);
+						document.write("and the value lies at:");
+						document.write(Q2);
+						}
+					else if(TCFR1<TCQ2&&TCFR1<TCIR3)
+						{
+						document.write("the least total cost is:");
+						document.write(TCFR1);
+						document.write("and the value lies at:");
+						document.write(FR1);
+						
+						}
+					else
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR3);
+						document.write("and the value lies at:");
+						document.write(IR3);
+						}
+				}
+				else if(Q2>IR3&&Q2<FR3)
+				{
+					var TCQ2=(D/Q2)*Co+((Q2/2)*(i2*P2))+(D*P2);
+					var TCFR1=(D/FR1)*Co+((FR1/2)*(i1*P1))+(D*P1);
+					var TCIR2=(D/IR2)*Co+((IR2/2)*(i2*P2))+(D*P2);
+					if (TCQ2<TCFR1&&TCQ2<TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCQ2);
+						document.write("and the value lies at:");
+						document.write(Q2);
+						}
+					else if(TCFR1<TCQ3&&TCFR1<TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCFR1);
+						document.write("and the value lies at:");
+						document.write(FR1);
+						
+						}
+					else
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR2);
+						document.write("and the value lies at:");
+						document.write(IR2);
+						}
+				}
+				else
+				{
+				document.write("doesnot lie in any range");
+				}
+       			 }
+		else if(Q1<Q2&&Q1<Q3)
+			{	
+				document.write("the lowest eoq is:<br/>");
+				document.write(Q1);
+				if(Q1>IR1&&Q1<FR1)
+				{
+					var TCQ1=(D/Q1)*Co+((Q1/2)*(i1*P1))+(D*P1);
+					var TCIR3=(D/IR3)*Co+((IR3/2)*(i3*P3))+(D*P3);
+					var TCIR2=(D/IR2)*Co+((IR2/2)*(i2*P2))+(D*P2);
+					if (TCQ1<TCIR3&&TCQ1<TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCQ1);
+						document.write("and the value lies at:");
+						document.write(Q1);
+						}
+					else if(TCIR3<TCQ1&&TCIR3<TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR3);
+						document.write("and the value lies at:");
+						document.write(IR3);
+						
+						}
+					else
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR2);
+						document.write("and the value lies at:");
+						document.write(IR2);
+						}
+				}
+				else if(Q1>IR2&&Q1<FR2)
+				{
+					var TCQ1=(D/Q1)*Co+((Q1/2)*(i1*P1))+(D*P1);
+					var TCFR1=(D/FR1)*Co+((FR1/2)*(i1*P1))+(D*P1);
+					var TCIR3=(D/IR3)*Co+((IR3/2)*(i3*P3))+(D*P3);
+					if (TCQ1<TCFR1&&TCQ1<TCIR3)
+						{
+						document.write("the least total cost is:");
+						document.write(TCQ1);
+						document.write("and the value lies at:");
+						document.write(Q1);
+						}
+					else if(TCFR1<TCQ1&&TCFR1<TCIR3)
+						{
+						document.write("the least total cost is:");
+						document.write(TCFR1);
+						document.write("and the value lies at:");
+						document.write(FR1);
+						
+						}
+					else
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR3);
+						document.write("and the value lies at:");
+						document.write(IR3);
+						}
+				}
+			else if(Q1>IR3&&Q1<FR3)
+				{
+					var TCQ1=(D/Q1)*Co+((Q1/2)*(i1*P1))+(D*P1);
+					var TCFR1=(D/FR1)*Co+((FR1/2)*(i1*P1))+(D*P1);
+					var TCIR2=(D/IR2)*Co+((IR2/2)*(i2*P2))+(D*P2);
+					if (TCQ3<TCFR1&&TCQ3<TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCQ1);
+						document.write("and the value lies at:");
+						document.write(Q1);
+						}
+					else if(TCFR1<TCQ1&&TCFR1<TCIR2)
+						{
+						document.write("the least total cost is:");
+						document.write(TCFR1);
+						document.write("and the value lies at:");
+						document.write(FR1);
+						
+						}
+					else
+						{
+						document.write("the least total cost is:");
+						document.write(TCIR2);
+						document.write("and the value lies at:");
+						document.write(IR2);
+						}
+				}
+			else
+				{
+				document.write("doesnot lie in any range");
+				}
+       		 }
+		else
+			{
+			document.write("something wrong is going on...please try again")
+			}
+}
+    </script>
+	<center><div style="color:white;"id="footer">
+        MADE BY <a href="#">AMIT KUMAR DAS</a><br />
+		REGISTER NO:<a href="#">2014108002</a><br />		
+	</div></center>
+</body>
+</html>

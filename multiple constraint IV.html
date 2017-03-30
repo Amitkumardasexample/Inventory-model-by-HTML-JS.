@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+<title>OPERATION_RESARCH_II</title>
+</head>
+<body background="background.jpg";>
+<center>
+<h1 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MULTIPLE INVENTORY CONSTRAINT MODEL</h1>
+<h2 style="color:white;">___________________________________________________________________________________________________</h2>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANNUAL DEMAND FOR ITEM 1:<input type="text" id="D1"=><em>unit/year</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANNUAL DEMAND FOR ITEM 2:<input type="text" id="D2"><em>unit/year</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDERING COST FOR ITEM 1:<input type="text" id="Co1"><em>rupees/unit</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDERING COST FOR ITEM 2:<input type="text" id="Co2"><em>rupees/unit</em></input><br><br></p>
+<p style="color:white;">INTEREST RATE FOR ITEM 1:<input type="text" id="i1"><em></em></input><br><br></p>
+<p style="color:white;">INTEREST RATE FOR ITEM 2:<input type="text" id="i2"><em></em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIT PRICE FOR ITEM 1:<input type="text" id="P1"><em>rupees</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIT PRICE FOR ITEM 2:<input type="text" id="P2"><em>rupees</em></input><br><br></p>
+<p style="color:white;">INVENTORY CONSTRAINT:<input type="text" id="IC"><em></em></input><br><br></p></center>
+<center><button onclick="test()"><p style="color:blue;"><h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GET RESULT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h1></p></button><br><br></center>
+
+    <center><script>
+        function test()
+        {		
+			var D1 = document.getElementById("D1").value;
+			var D2 = document.getElementById("D2").value;
+			var Co1 = document.getElementById("Co1").value;
+			var Co2 = document.getElementById("Co2").value;
+			var i1 = document.getElementById("i1").value;
+			var i2 = document.getElementById("i2").value;
+			var P1 = document.getElementById("P1").value;
+			var P2 = document.getElementById("P2").value;
+			
+			var IC = document.getElementById("IC").value;
+			var eoq1=((2*D1*Co1)/(i1*P1));
+            
+			var Q1=Math.sqrt(eoq1);
+            
+			var eoq2=((2*D2*Co2)/(i2*P2));
+           
+			var Q2=Math.sqrt(eoq2);
+            var I1=(Q1/2)*P1;
+			var I2=(Q2/2)*P2;
+			var TIR=Number.parseInt(I1)+Number.parseInt(I2);
+			document.write("the total inventory cost as per question is :")
+			document.write(TIR);
+           		document.write("rupees");
+				document.write("<br/>");
+			if(TIR > IC)
+			{			var a=Math.sqrt(Number.parseInt(P1)*Number.parseInt(D1))+Math.sqrt(Number.parseInt(P2)*Number.parseInt(D2));
+            			var b=Number.parseFloat(a)*Number.parseFloat(a);
+						var l=Number.parseFloat(i1)-(Number.parseInt(Co1)/((2*Number.parseInt(IC)*Number.parseInt(IC))*Number.parseFloat(b)));
+						document.write("solved lambda value:");
+						document.write(l);
+						document.write("<br/>");
+						var u=(2*Number.parseInt(Co1)*Number.parseInt(D1));
+               			var v=(Number.parseFloat(i1))*(Number.parseInt(P1));
+               			var y=(Number.parseInt(P1))*(Number.parseFloat(l));
+               			var o=Number.parseInt(v)+Number.parseFloat(y);
+						document.write("quamtity after including lambda");
+						document.write("<br/>");
+				var QR1=Math.sqrt(Number.parseFloat(u)/Number.parseFloat(o));
+						document.write("Q1:");
+                		document.write(QR1);
+             			document.write("<br/>");
+						var a1=(2*Number.parseInt(Co2)*Number.parseInt(D2));
+               			var a2=(Number.parseFloat(i2))*(Number.parseInt(P2));
+               			var a3=(Number.parseInt(P2))*(Number.parseFloat(l));
+               			var k=Number.parseInt(v)+Number.parseFloat(y);
+						document.write("quamtity for item 1 after including lambda");
+						document.write("<br/>");
+				var QR2=Math.sqrt(Number.parseFloat(a1)/Number.parseFloat(k));
+						document.write("Q2:");
+             			document.write(QR2);
+              			document.write("<br/>");
+				var IR1=((QR1*P1)/2);
+						document.write("INVENTORY FOR ITEM 1:");
+               			document.write(IR1);
+               			document.write("<br/>");
+				var IR2=((QR2*P2)/2);
+						document.write("INVENTORY FOR ITEM 2:");
+              			document.write(IR2);
+              			document.write("<br/>");
+				var TIR=(IR1+IR2);
+             			
+				if( TIR < IC)
+					{	document.write("TOTAL INVENTORY for L:");
+						document.write(l);
+						document.write("is  :");
+						document.write(TIR);
+						document.write("<br/>");
+						document.write("...........HIT AND TRIAL METHOD IS NOT REQUIRED..........");
+					 }
+				else  
+                {
+					document.write("PROCEEDING FOR HIT AND TRIAL METHOD");
+            	 var l = 0.1;
+  	        	 while (l < 1)
+					{
+            				var QR3=Math.sqrt((2*Co1*D1)/((P1*i1)+(l*P1)));
+							var QR4=Math.sqrt((2*Co2*D2)/((P2*i2)+(l*P2)));
+							var IR3=((QR3*P1)/2);
+							var IR4=((QR4*P2)/2);
+							var TIR2=(IR3+IR4);
+							document.write(" for lambda value : " + l + "<br />");
+							document.write(l);
+							document.write("total space obtained:")
+							document.write(TIR);
+                            if (TIR<IC)
+                            {
+                            break;javascript:;
+                            }
+                            else{
+							l=l+0.1;}
+					}
+                            
+                }             
+    }
+else{
+ document.write("the inventory is already enough");
+    }
+}
+     
+    </script></center>
+</body>
+<center><div style="color:white;"id="footer">
+        MADE BY <a href="#">AMIT KUMAR DAS</a><br />
+		REGISTER NO:<a href="#">2014108002</a><br />		
+	</div></center>
+</html>

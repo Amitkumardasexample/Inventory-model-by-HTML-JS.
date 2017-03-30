@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+<title>OPERATION_RESARCH_II</title>
+</head>
+<body background="background.jpg";>
+<center>
+<h1 style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MANUFACTURING MODEL WITH SHORTAGE</h1>
+<h2 style="color:white;">___________________________________________________________________________________________________</h2>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;ANNUAL DEMAND:<input type="text" id="D">  <em>unit/year</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDERING COST:<input type="text" id="Co"><em>rupees/unit</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARRYING COST:<input type="text" id="Ch"><em>rupees/unit/year</em></input><br><br></p>
+<p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHORTAGE COST:<input type="text" id="Cs"><em>rupees/unit/year</em></input><br><br></p></centre>
+<p style="color:white;">PRODUCTION RATE:<input type="text" id="P"><em>unit/year</em></input><br><br></p></centre>
+</centre><button onclick="test()"><p style="color:blue;"><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GET RESULT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1></p></button><br><br></centre>
+    <script>
+        function test()
+        {	
+			var D = document.getElementById("D").value;
+			var Co = document.getElementById("Co").value;
+			var Ch = document.getElementById("Ch").value;
+			var Cs = document.getElementById("Cs").value;
+			var P = document.getElementById("P").value;
+			var Q=(Math.sqrt((2*D*Co)/Ch))*(Math.sqrt(P/(P-D)))*(Math.sqrt((Ch+Cs)/Cs));
+			var S=(((Q*Ch)/Ch+Cs)*((P-D)/P));
+			var N=(D/Q);
+			var T1=(Q/P);
+			var T2=(Q/D);
+			var T=(T1+T2);
+			var Imax=(((Q*(P-D))/P)-S);
+			var AImax=(Imax*Ch);
+			var TC=((D/Q)*Co)+(((P-D)/2)*(Q/P)*Ch);
+			document.write("\neconomical order quantity is:");
+            document.write(Q);
+			document.write("\nNumber of  orders  is:");
+			document.write(N);
+			document.write("\nTime of manufacturing is:");
+            document.write(T1);
+			document.write("\nTime between orderS is:");
+			document.write(T2);
+			document.write("\ntotal time is:");
+            document.write(T);
+			document.write("\nMaximum inventory is:");
+			document.write(Imax);
+			document.write("\nAnnual inventory is:");
+			document.write(AImax);
+			document.write("\nTotal cost is:");
+            document.write(TC);
+        }
+    </script>
+</body>
+<center><div style="color:white;"id="footer">
+        MADE BY <a href="#">AMIT KUMAR DAS</a><br />
+		REGISTER NO:<a href="#">2014108002</a><br />		
+	</div></center>
+
+</html>
